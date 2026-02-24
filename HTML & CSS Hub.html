@@ -1,0 +1,1321 @@
+<!doctype html>
+<html lang="th" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML &amp; CSS Learning Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet">
+  <script src="/_sdk/element_sdk.js"></script>
+   <style>
+    body {
+      box-sizing: border-box;
+    }
+    * {
+      font-family: 'Kanit', sans-serif;
+    }
+    code, .code-block {
+      font-family: 'Fira Code', monospace;
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+    .card-gradient {
+      background: linear-gradient(145deg, #1e1e30 0%, #252540 100%);
+    }
+    .glow-effect {
+      box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+    }
+    .nav-link {
+      position: relative;
+      overflow: hidden;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #f59e0b, #ef4444);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    .nav-link:hover::after {
+      width: 80%;
+    }
+    .code-block {
+      background: #0d1117;
+      border-left: 4px solid #f59e0b;
+    }
+    .skill-tag {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    }
+    .difficulty-easy {
+      background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+    }
+    .difficulty-medium {
+      background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+    }
+    .difficulty-hard {
+      background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.6); }
+    }
+    .pulse-glow {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+    .page-transition {
+      animation: fadeIn 0.4s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .code-background {
+      position: relative;
+      overflow: hidden;
+    }
+    .code-background::before {
+      content: '<html>\A  <head>\A    <title>Code</title>\A  </head>\A  <body>\A    <h1>Hello World</h1>\A    <div class="container">\A      <p>Learning HTML & CSS</p>\A    </div>\A  </body>\A</html>\A\A.container {\A  display: flex;\A  background: linear-gradient();\A  padding: 20px;\A}\A\Ah1 {\A  color: #ff6b6b;\A  font-size: 2rem;\A}\A\A<div class="card">\A  <img src="image.jpg">\A  <h2>Title</h2>\A</div>';
+      position: absolute;
+      top: -10%;
+      left: -5%;
+      width: 110%;
+      height: 120%;
+      font-family: 'Fira Code', monospace;
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(99, 102, 241, 0.15);
+      white-space: pre;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .chat-bubble {
+      max-width: 80%;
+      word-wrap: break-word;
+      animation: slideIn 0.3s ease-out;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce-chat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    .bounce-chat {
+      animation: bounce-chat 2s ease-in-out infinite;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full gradient-bg text-gray-100">
+  <div id="app" class="h-full overflow-auto"><!-- Navigation -->
+   <nav class="sticky top-0 z-50 bg-opacity-90 backdrop-blur-md bg-gray-900/80 border-b border-gray-700/50">
+    <div class="max-w-7xl mx-auto px-4 py-4">
+     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div class="flex items-center gap-3">
+       <div class="flex items-center justify-center text-xl font-bold">
+        <img src="LOGO.png" alt="" width="50px">
+       </div><span id="site-title" class="text-xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent"> HTML &amp; CSS Hub </span>
+      </div>
+      <div class="flex flex-wrap gap-2 md:gap-6"><button onclick="showPage('home')" class="nav-link px-3 py-2 text-sm md:text-base hover:text-orange-400 transition-colors" data-page="home">🏠 หน้าหลัก</button> <button onclick="showPage('html')" class="nav-link px-3 py-2 text-sm md:text-base hover:text-orange-400 transition-colors" data-page="html">📄 HTML</button> <button onclick="showPage('css')" class="nav-link px-3 py-2 text-sm md:text-base hover:text-orange-400 transition-colors" data-page="css">🎨 CSS</button> <button onclick="showPage('download')" class="nav-link px-3 py-2 text-sm md:text-base hover:text-orange-400 transition-colors" data-page="download">📥 Download</button> <button onclick="showPage('examples')" class="nav-link px-3 py-2 text-sm md:text-base hover:text-orange-400 transition-colors" data-page="examples">💡 ตัวอย่าง</button> <button onclick="showPage('contact')" class="nav-link px-3 py-2 text-sm md:text-base hover:text-orange-400 transition-colors" data-page="contact">📧 Contact</button>
+      </div>
+     </div>
+    </div>
+   </nav><!-- Page Content Container -->
+   <div id="page-content" class="page-transition"><!-- Home Page (Default) -->
+    <div id="home-page" class="page code-background"><!-- Hero Section -->
+     <section class="py-16 px-4">
+      <div class="max-w-6xl mx-auto text-center">
+       <div class="float-animation inline-block mb-6">
+        <div class="w-24 h-24 mx-auto rounded-2xl bg-gradient-to-br from-orange-500 via-red-500 to-purple-600 flex items-center justify-center text-4xl glow-effect">
+         &lt;/&gt;
+        </div>
+       </div>
+       <h1 class="text-4xl md:text-6xl font-bold mb-4"><span class="bg-gradient-to-r from-orange-400 via-red-400 to-purple-400 bg-clip-text text-transparent"> HTML &amp; CSS </span></h1>
+       <p id="hero-subtitle" class="text-xl md:text-2xl text-gray-300 mb-8">เรียนรู้พื้นฐานการสร้างเว็บไซต์ตั้งแต่เริ่มต้น</p>
+       <div class="flex flex-wrap justify-center gap-4"><button onclick="showPage('html')" class="px-8 py-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl font-semibold hover:shadow-lg hover:shadow-orange-500/30 transition-all transform hover:scale-105"> เริ่มเรียน HTML → </button> <button onclick="showPage('css')" class="px-8 py-3 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/30 transition-all transform hover:scale-105"> เริ่มเรียน CSS → </button>
+       </div>
+      </div>
+     </section><!-- What is HTML & CSS -->
+     <section class="py-12 px-4">
+      <div class="max-w-6xl mx-auto">
+       <h2 class="text-3xl font-bold text-center mb-12"><span class="bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">HTML &amp; CSS คืออะไร?</span></h2>
+       <div class="grid md:grid-cols-2 gap-8"><!-- HTML Card -->
+        <div class="card-gradient rounded-2xl p-8 border border-gray-700/50 hover:border-orange-500/50 transition-all hover:shadow-lg hover:shadow-orange-500/10">
+         <div class="flex items-center gap-4 mb-6">
+          <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-2xl font-bold">
+           HTML
+          </div>
+          <div>
+           <h3 class="text-2xl font-bold text-orange-400">HTML</h3>
+           <p class="text-gray-400">HyperText Markup Language</p>
+          </div>
+         </div>
+         <p class="text-gray-300 leading-relaxed mb-4">HTML คือภาษามาร์กอัปที่ใช้สร้างโครงสร้างของเว็บไซต์ เปรียบเสมือน "โครงกระดูก" ของเว็บ ที่กำหนดว่าเนื้อหาแต่ละส่วนคืออะไร เช่น หัวข้อ ย่อหน้า รูปภาพ ลิงก์ ตาราง และอื่นๆ</p>
+         <div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">โครงสร้างเว็บ</span> <span class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">เนื้อหา</span> <span class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">ความหมาย</span>
+         </div>
+        </div><!-- CSS Card -->
+        <div class="card-gradient rounded-2xl p-8 border border-gray-700/50 hover:border-purple-500/50 transition-all hover:shadow-lg hover:shadow-purple-500/10">
+         <div class="flex items-center gap-4 mb-6">
+          <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-2xl font-bold">
+           CSS
+          </div>
+          <div>
+           <h3 class="text-2xl font-bold text-purple-400">CSS</h3>
+           <p class="text-gray-400">Cascading Style Sheets</p>
+          </div>
+         </div>
+         <p class="text-gray-300 leading-relaxed mb-4">CSS คือภาษาที่ใช้ตกแต่งและจัดรูปแบบเว็บไซต์ เปรียบเสมือน "เสื้อผ้า" ของเว็บ ที่กำหนดสี ขนาด ตำแหน่ง แบบอักษร และความสวยงามทั้งหมดของหน้าเว็บ</p>
+         <div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">สไตล์</span> <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">สีสัน</span> <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">เลย์เอาต์</span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </section><!-- What can you do -->
+     <section class="py-12 px-4 bg-gray-900/30">
+      <div class="max-w-6xl mx-auto">
+       <h2 class="text-3xl font-bold text-center mb-12"><span class="bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent">ทำอะไรได้บ้าง?</span></h2>
+       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="card-gradient rounded-xl p-6 text-center border border-gray-700/50 hover:border-green-500/50 transition-all">
+         <div class="text-4xl mb-4">
+          🌐
+         </div>
+         <h3 class="font-semibold mb-2">เว็บไซต์ส่วนตัว</h3>
+         <p class="text-gray-400 text-sm">Portfolio, Blog, Resume</p>
+        </div>
+        <div class="card-gradient rounded-xl p-6 text-center border border-gray-700/50 hover:border-green-500/50 transition-all">
+         <div class="text-4xl mb-4">
+          🛒
+         </div>
+         <h3 class="font-semibold mb-2">เว็บอีคอมเมิร์ซ</h3>
+         <p class="text-gray-400 text-sm">ร้านค้าออนไลน์</p>
+        </div>
+        <div class="card-gradient rounded-xl p-6 text-center border border-gray-700/50 hover:border-green-500/50 transition-all">
+         <div class="text-4xl mb-4">
+          📱
+         </div>
+         <h3 class="font-semibold mb-2">Landing Page</h3>
+         <p class="text-gray-400 text-sm">หน้าโปรโมทสินค้า</p>
+        </div>
+        <div class="card-gradient rounded-xl p-6 text-center border border-gray-700/50 hover:border-green-500/50 transition-all">
+         <div class="text-4xl mb-4">
+          📧
+         </div>
+         <h3 class="font-semibold mb-2">Email Template</h3>
+         <p class="text-gray-400 text-sm">อีเมลสวยงาม</p>
+        </div>
+       </div>
+      </div>
+     </section><!-- Skills Required -->
+     <section class="py-12 px-4">
+      <div class="max-w-6xl mx-auto">
+       <h2 class="text-3xl font-bold text-center mb-12"><span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">ทักษะที่ควรมี</span></h2>
+       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="card-gradient rounded-xl p-6 border border-gray-700/50">
+         <div class="text-3xl mb-4">
+          🎯
+         </div>
+         <h3 class="text-lg font-semibold mb-2 text-yellow-400">ความละเอียดรอบคอบ</h3>
+         <p class="text-gray-400 text-sm">ตรวจสอบโค้ดให้ถูกต้อง ไม่มีข้อผิดพลาด</p>
+        </div>
+        <div class="card-gradient rounded-xl p-6 border border-gray-700/50">
+         <div class="text-3xl mb-4">
+          🎨
+         </div>
+         <h3 class="text-lg font-semibold mb-2 text-yellow-400">ความคิดสร้างสรรค์</h3>
+         <p class="text-gray-400 text-sm">ออกแบบหน้าตาเว็บให้สวยงามและใช้งานง่าย</p>
+        </div>
+        <div class="card-gradient rounded-xl p-6 border border-gray-700/50">
+         <div class="text-3xl mb-4">
+          🧩
+         </div>
+         <h3 class="text-lg font-semibold mb-2 text-yellow-400">การแก้ปัญหา</h3>
+         <p class="text-gray-400 text-sm">วิเคราะห์และแก้ไขข้อผิดพลาดในโค้ด</p>
+        </div>
+        <div class="card-gradient rounded-xl p-6 border border-gray-700/50">
+         <div class="text-3xl mb-4">
+          📚
+         </div>
+         <h3 class="text-lg font-semibold mb-2 text-yellow-400">การเรียนรู้ตลอดชีวิต</h3>
+         <p class="text-gray-400 text-sm">เทคโนโลยีเปลี่ยนแปลงเสมอ ต้องอัพเดทความรู้</p>
+        </div>
+        <div class="card-gradient rounded-xl p-6 border border-gray-700/50">
+         <div class="text-3xl mb-4">
+          ⏰
+         </div>
+         <h3 class="text-lg font-semibold mb-2 text-yellow-400">ความอดทน</h3>
+         <p class="text-gray-400 text-sm">การเขียนโค้ดต้องใช้เวลาและความพยายาม</p>
+        </div>
+        <div class="card-gradient rounded-xl p-6 border border-gray-700/50">
+         <div class="text-3xl mb-4">
+          👥
+         </div>
+         <h3 class="text-lg font-semibold mb-2 text-yellow-400">การทำงานเป็นทีม</h3>
+         <p class="text-gray-400 text-sm">ร่วมงานกับนักออกแบบและโปรแกรมเมอร์อื่นๆ</p>
+        </div>
+       </div>
+      </div>
+     </section>
+    </div><!-- HTML Page -->
+    <div id="html-page" class="page hidden">
+     <section class="py-16 px-4">
+      <div class="max-w-4xl mx-auto"><!-- Header -->
+       <div class="text-center mb-12">
+        <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-3xl font-bold pulse-glow">
+         HTML
+        </div>
+        <h1 class="text-4xl font-bold mb-4 text-orange-400">HTML คืออะไร?</h1>
+        <p class="text-xl text-gray-300">HyperText Markup Language</p>
+       </div><!-- Content Cards -->
+       <div class="space-y-8"><!-- Definition -->
+        <div class="card-gradient rounded-2xl p-8 border border-orange-500/30">
+         <h2 class="text-2xl font-bold mb-4 flex items-center gap-3"><span class="text-3xl">📖</span> <span class="text-orange-400">ความหมาย</span></h2>
+         <p class="text-gray-300 leading-relaxed text-lg">HTML (HyperText Markup Language) คือภาษามาร์กอัปมาตรฐานสำหรับสร้างเว็บเพจ ไม่ใช่ภาษาโปรแกรมมิ่ง แต่เป็นภาษาที่ใช้กำหนดโครงสร้างและความหมายของเนื้อหาบนเว็บ โดยใช้ "แท็ก" (Tags) ในการระบุว่าส่วนใดคืออะไร เช่น หัวข้อ ย่อหน้า รูปภาพ หรือลิงก์</p>
+        </div><!-- History -->
+        <div class="card-gradient rounded-2xl p-8 border border-orange-500/30">
+         <h2 class="text-2xl font-bold mb-4 flex items-center gap-3"><span class="text-3xl">📜</span> <span class="text-orange-400">ประวัติความเป็นมา</span></h2>
+         <div class="space-y-4 text-gray-300">
+          <p><strong class="text-orange-300">ปี 1991:</strong> Tim Berners-Lee สร้าง HTML ที่ CERN (องค์การวิจัยนิวเคลียร์ยุโรป)</p>
+          <p><strong class="text-orange-300">ปี 1995:</strong> HTML 2.0 เป็นมาตรฐานแรกอย่างเป็นทางการ</p>
+          <p><strong class="text-orange-300">ปี 1997:</strong> HTML 3.2 และ 4.0 เพิ่มความสามารถมากขึ้น</p>
+          <p><strong class="text-orange-300">ปี 2014:</strong> HTML5 เปิดตัวอย่างเป็นทางการ พร้อมฟีเจอร์ใหม่ๆ มากมาย</p>
+          <p><strong class="text-orange-300">ปัจจุบัน:</strong> HTML Living Standard พัฒนาต่อเนื่องโดย WHATWG</p>
+         </div>
+        </div><!-- What can do -->
+        <div class="card-gradient rounded-2xl p-8 border border-orange-500/30">
+         <h2 class="text-2xl font-bold mb-4 flex items-center gap-3"><span class="text-3xl">⚡</span> <span class="text-orange-400">ทำอะไรได้บ้าง</span></h2>
+         <div class="grid sm:grid-cols-2 gap-4">
+          <div class="bg-gray-800/50 rounded-xl p-4">
+           <div class="text-2xl mb-2">
+            📝
+           </div>
+           <h3 class="font-semibold mb-1">จัดโครงสร้างเนื้อหา</h3>
+           <p class="text-gray-400 text-sm">หัวข้อ, ย่อหน้า, รายการ</p>
+          </div>
+          <div class="bg-gray-800/50 rounded-xl p-4">
+           <div class="text-2xl mb-2">
+            🖼️
+           </div>
+           <h3 class="font-semibold mb-1">แสดงสื่อมัลติมีเดีย</h3>
+           <p class="text-gray-400 text-sm">รูปภาพ, วิดีโอ, เสียง</p>
+          </div>
+          <div class="bg-gray-800/50 rounded-xl p-4">
+           <div class="text-2xl mb-2">
+            🔗
+           </div>
+           <h3 class="font-semibold mb-1">สร้างลิงก์เชื่อมโยง</h3>
+           <p class="text-gray-400 text-sm">ลิงก์ไปหน้าอื่นหรือเว็บอื่น</p>
+          </div>
+          <div class="bg-gray-800/50 rounded-xl p-4">
+           <div class="text-2xl mb-2">
+            📋
+           </div>
+           <h3 class="font-semibold mb-1">สร้างฟอร์ม</h3>
+           <p class="text-gray-400 text-sm">รับข้อมูลจากผู้ใช้</p>
+          </div>
+          <div class="bg-gray-800/50 rounded-xl p-4">
+           <div class="text-2xl mb-2">
+            📊
+           </div>
+           <h3 class="font-semibold mb-1">สร้างตาราง</h3>
+           <p class="text-gray-400 text-sm">แสดงข้อมูลในรูปแบบตาราง</p>
+          </div>
+          <div class="bg-gray-800/50 rounded-xl p-4">
+           <div class="text-2xl mb-2">
+            🏗️
+           </div>
+           <h3 class="font-semibold mb-1">Semantic Elements</h3>
+           <p class="text-gray-400 text-sm">header, nav, main, footer</p>
+          </div>
+         </div>
+        </div><!-- Difficulty -->
+        <div class="card-gradient rounded-2xl p-8 border border-orange-500/30">
+         <h2 class="text-2xl font-bold mb-4 flex items-center gap-3"><span class="text-3xl">📊</span> <span class="text-orange-400">ระดับความยาก</span></h2>
+         <div class="flex items-center gap-4 mb-4">
+          <div class="flex gap-1">
+           <div class="w-8 h-8 rounded bg-green-500"></div>
+           <div class="w-8 h-8 rounded bg-green-500"></div>
+           <div class="w-8 h-8 rounded bg-gray-600"></div>
+           <div class="w-8 h-8 rounded bg-gray-600"></div>
+           <div class="w-8 h-8 rounded bg-gray-600"></div>
+          </div><span class="text-xl font-bold text-green-400">ง่าย (2/5)</span>
+         </div>
+         <p class="text-gray-300">HTML เป็นภาษาที่เรียนรู้ง่ายที่สุดในการพัฒนาเว็บ เหมาะสำหรับผู้เริ่มต้น สามารถเริ่มเขียนและเห็นผลลัพธ์ได้ทันที ใช้เวลาประมาณ 1-2 สัปดาห์ในการเรียนรู้พื้นฐาน</p>
+        </div><!-- Career -->
+        <div class="card-gradient rounded-2xl p-8 border border-orange-500/30">
+         <h2 class="text-2xl font-bold mb-4 flex items-center gap-3"><span class="text-3xl">💼</span> <span class="text-orange-400">เหมาะกับอาชีพ</span></h2>
+         <div class="flex flex-wrap gap-3"><span class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-lg">Front-end Developer</span> <span class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-lg">Web Designer</span> <span class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-lg">UI/UX Designer</span> <span class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-lg">Content Creator</span> <span class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-lg">Email Marketer</span> <span class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-lg">Digital Marketer</span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </section>
+    </div><!-- CSS Page -->
+    <div id="css-page" class="page hidden">
+     <section class="py-16 px-4">
+      <div class="max-w-4xl mx-auto"><!-- Header -->
+       <div class="text-center mb-12">
+        <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-3xl font-bold pulse-glow">
+         CSS
+        </div>
+        <h1 class="text-4xl font-bold mb-4 text-purple-400">CSS คืออะไร?</h1>
+        <p class="text-xl text-gray-300">Cascading Style Sheets</p>
+       </div><!-- Content Cards -->
+       <div class="space-y-8"><!-- Definition -->
+        <div class="card-gradient rounded-2xl p-8 border border-purple-500/30">
+         <h2 class="text-2xl font-bold mb-4 flex items-center gap-3"><span class="text-3xl">📖</span> <span class="text-purple-400">ความหมาย</span></h2>
+         <p class="text-gray-300 leading-relaxed text-lg">CSS (Cascading Style Sheets) คือภาษาที่ใช้ตกแต่งและจัดรูปแบบเอกสาร HTML ทำให้เว็บไซต์มีความสวยงาม น่าสนใจ โดยสามารถกำหนดสี ขนาด ตำแหน่ง แบบอักษร พื้นหลัง เอฟเฟกต์ และการจัดวางเลย์เอาต์ต่างๆ ได้อย่างอิสระ</p>
+        </div><!-- History -->
+        <div class="card-gradient rounded-2xl p-8 border border-purple-500/30">
+         <h2 class="text-2xl font-bold mb-4 flex items-center gap-3"><span class="text-3xl">📜</span> <span class="text-purple-400">ประวัติความเป็นมา</span></h2>
+         <div class="space-y-4 text-gray-300">
+          <p><strong class="text-purple-300">ปี 1994:</strong> Håkon Wium Lie เสนอแนวคิด CSS ครั้งแรก</p>
+          <p><strong class="text-purple-300">ปี 1996:</strong> CSS1 เปิดตัวอย่างเป็นทางการเดย W3C</p>
+          <p><strong class="text-purple-300">ปี 1998:</strong> CSS2 เพิ่มความสามารถ positioning และ media types</p>
+          <p><strong class="text-purple-300">ปี 2011:</strong> CSS2.1 แก้ไขข้อผิดพลาดและเป็นมาตรฐานที่ใช้กว้างขวาง</p>
+          <p><strong class="text-purple-300">ปี 2011-ปัจจุบัน:</strong> CSS3 แยกเป็นโมดูลๆ เช่น Flexbox, Grid, Animation</p>
+         </div>
+        </div><!-- What can do -->
+        <div class="card-gradient rounded-2xl p-8 border border-purple-500/30">
+         <h2 class="text-2xl font-bold mb-4 flex items-center gap-3"><span class="text-3xl">⚡</span> <span class="text-purple-400">ทำอะไรได้บ้าง</span></h2>
+         <div class="grid sm:grid-cols-2 gap-4">
+          <div class="bg-gray-800/50 rounded-xl p-4">
+           <div class="text-2xl mb-2">
+            🎨
+           </div>
+           <h3 class="font-semibold mb-1">กำหนดสีและพื้นหลัง</h3>
+           <p class="text-gray-400 text-sm">สีตัวอักษร, พื้นหลัง, ไล่สี</p>
+          </div>
+          <div class="bg-gray-800/50 rounded-xl p-4">
+           <div class="text-2xl mb-2">
+            📐
+           </div>
+           <h3 class="font-semibold mb-1">จัดวางเลย์เอาต์</h3>
+           <p class="text-gray-400 text-sm">Flexbox, Grid, Position</p>
+          </div>
+          <div class="bg-gray-800/50 rounded-xl p-4">
+           <div class="text-2xl mb-2">
+            ✨
+           </div>
+           <h3 class="font-semibold mb-1">เอฟเฟกต์และอนิเมชั่น</h3>
+           <p class="text-gray-400 text-sm">Transition, Animation, Transform</p>
+          </div>
+          <div class="bg-gray-800/50 rounded-xl p-4">
+           <div class="text-2xl mb-2">
+            📱
+           </div>
+           <h3 class="font-semibold mb-1">Responsive Design</h3>
+           <p class="text-gray-400 text-sm">รองรับทุกขนาดหน้าจอ</p>
+          </div>
+          <div class="bg-gray-800/50 rounded-xl p-4">
+           <div class="text-2xl mb-2">
+            🔤
+           </div>
+           <h3 class="font-semibold mb-1">จัดการตัวอักษร</h3>
+           <p class="text-gray-400 text-sm">ฟอนต์, ขนาด, ระยะห่าง</p>
+          </div>
+          <div class="bg-gray-800/50 rounded-xl p-4">
+           <div class="text-2xl mb-2">
+            🎭
+           </div>
+           <h3 class="font-semibold mb-1">Pseudo-classes/elements</h3>
+           <p class="text-gray-400 text-sm">:hover, :focus, ::before</p>
+          </div>
+         </div>
+        </div><!-- Difficulty -->
+        <div class="card-gradient rounded-2xl p-8 border border-purple-500/30">
+         <h2 class="text-2xl font-bold mb-4 flex items-center gap-3"><span class="text-3xl">📊</span> <span class="text-purple-400">ระดับความยาก</span></h2>
+         <div class="flex items-center gap-4 mb-4">
+          <div class="flex gap-1">
+           <div class="w-8 h-8 rounded bg-yellow-500"></div>
+           <div class="w-8 h-8 rounded bg-yellow-500"></div>
+           <div class="w-8 h-8 rounded bg-yellow-500"></div>
+           <div class="w-8 h-8 rounded bg-gray-600"></div>
+           <div class="w-8 h-8 rounded bg-gray-600"></div>
+          </div><span class="text-xl font-bold text-yellow-400">ปานกลาง (3/5)</span>
+         </div>
+         <p class="text-gray-300">CSS พื้นฐานเรียนรู้ง่าย แต่การเชี่ยวชาญต้องใช้เวลา โดยเฉพาะ Flexbox, Grid, และ Responsive Design มีความซับซ้อนที่ต้องฝึกฝน ใช้เวลาประมาณ 1-3 เดือนในการเข้าใจอย่างลึกซึ้ง</p>
+        </div><!-- Career -->
+        <div class="card-gradient rounded-2xl p-8 border border-purple-500/30">
+         <h2 class="text-2xl font-bold mb-4 flex items-center gap-3"><span class="text-3xl">💼</span> <span class="text-purple-400">เหมาะกับอาชีพ</span></h2>
+         <div class="flex flex-wrap gap-3"><span class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-lg">Front-end Developer</span> <span class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-lg">Web Designer</span> <span class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-lg">UI Designer</span> <span class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-lg">Full-stack Developer</span> <span class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-lg">Creative Developer</span> <span class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-lg">Motion Designer</span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </section>
+    </div><!-- Download Page -->
+    <div id="download-page" class="page hidden">
+     <section class="py-16 px-4">
+      <div class="max-w-6xl mx-auto"><!-- Header -->
+       <div class="text-center mb-12">
+        <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-4xl pulse-glow">
+         📥
+        </div>
+        <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">ดาวน์โหลดเครื่องมือ</h1>
+        <p class="text-xl text-gray-300">เครื่องมือและทรัพยากรที่จำเป็นสำหรับการเขียนโค้ด HTML &amp; CSS</p>
+       </div><!-- Code Editors Section -->
+       <div class="mb-12">
+        <h2 class="text-3xl font-bold mb-8 text-center"><span class="bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">โปรแกรมเขียนโค้ด (Code Editors)</span></h2>
+        <div class="grid md:grid-cols-3 gap-6"><!-- VS Code -->
+         <div class="card-gradient rounded-2xl p-6 border border-gray-700/50 hover:border-cyan-500/50 transition-all">
+          <div class="text-5xl mb-4 text-center">
+           💙
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-center text-cyan-400">Visual Studio Code</h3>
+          <p class="text-gray-400 text-sm mb-4 text-center">โปรแกรมเขียนโค้ดยอดนิยม ฟรี และมี Extensions มากมาย</p>
+          <div class="space-y-2 mb-4">
+           <div class="flex items-center gap-2 text-sm text-gray-300"><span class="text-green-400">✓</span> <span>รองรับทุก OS</span>
+           </div>
+           <div class="flex items-center gap-2 text-sm text-gray-300"><span class="text-green-400">✓</span> <span>Extensions มากมาย</span>
+           </div>
+           <div class="flex items-center gap-2 text-sm text-gray-300"><span class="text-green-400">✓</span> <span>Intellisense ช่วยเขียนโค้ด</span>
+           </div>
+          </div><a href="https://code.visualstudio.com/download" target="_blank" rel="noopener noreferrer" class="block w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl font-semibold text-center hover:shadow-lg hover:shadow-cyan-500/30 transition-all transform hover:scale-105"> ดาวน์โหลด VS Code </a>
+         </div><!-- Sublime Text -->
+         <div class="card-gradient rounded-2xl p-6 border border-gray-700/50 hover:border-orange-500/50 transition-all">
+          <div class="text-5xl mb-4 text-center">
+           🟠
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-center text-orange-400">Sublime Text</h3>
+          <p class="text-gray-400 text-sm mb-4 text-center">โปรแกรมที่เร็วและเบา เหมาะสำหรับทุกคน</p>
+          <div class="space-y-2 mb-4">
+           <div class="flex items-center gap-2 text-sm text-gray-300"><span class="text-green-400">✓</span> <span>เบาและรวดเร็ว</span>
+           </div>
+           <div class="flex items-center gap-2 text-sm text-gray-300"><span class="text-green-400">✓</span> <span>UI สวยงาม</span>
+           </div>
+           <div class="flex items-center gap-2 text-sm text-gray-300"><span class="text-green-400">✓</span> <span>ทดลองใช้ฟรี</span>
+           </div>
+          </div><a href="https://www.sublimetext.com/download" target="_blank" rel="noopener noreferrer" class="block w-full py-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl font-semibold text-center hover:shadow-lg hover:shadow-orange-500/30 transition-all transform hover:scale-105"> ดาวน์โหลด Sublime </a>
+         </div><!-- Notepad++ -->
+         <div class="card-gradient rounded-2xl p-6 border border-gray-700/50 hover:border-green-500/50 transition-all">
+          <div class="text-5xl mb-4 text-center">
+           🟢
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-center text-green-400">Notepad++</h3>
+          <p class="text-gray-400 text-sm mb-4 text-center">โปรแกรมเบาสำหรับ Windows ใช้งานง่าย</p>
+          <div class="space-y-2 mb-4">
+           <div class="flex items-center gap-2 text-sm text-gray-300"><span class="text-green-400">✓</span> <span>ฟรี 100%</span>
+           </div>
+           <div class="flex items-center gap-2 text-sm text-gray-300"><span class="text-green-400">✓</span> <span>เบามาก</span>
+           </div>
+           <div class="flex items-center gap-2 text-sm text-gray-300"><span class="text-green-400">✓</span> <span>เหมาะสำหรับผู้เริ่มต้น</span>
+           </div>
+          </div><a href="https://notepad-plus-plus.org/downloads/" target="_blank" rel="noopener noreferrer" class="block w-full py-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl font-semibold text-center hover:shadow-lg hover:shadow-green-500/30 transition-all transform hover:scale-105"> ดาวน์โหลด Notepad++ </a>
+         </div>
+        </div>
+       </div><!-- Browsers Section -->
+       <div class="mb-12">
+        <h2 class="text-3xl font-bold mb-8 text-center"><span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">เว็บเบราว์เซอร์สำหรับทดสอบ</span></h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+         <div class="card-gradient rounded-xl p-6 text-center border border-gray-700/50 hover:border-purple-500/50 transition-all">
+          <div class="text-4xl mb-3">
+           🌐
+          </div>
+          <h3 class="font-bold mb-2">Google Chrome</h3>
+          <p class="text-gray-400 text-sm mb-3">DevTools ที่ดีที่สุด</p><a href="https://www.google.com/chrome/" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 text-sm font-semibold">ดาวน์โหลด →</a>
+         </div>
+         <div class="card-gradient rounded-xl p-6 text-center border border-gray-700/50 hover:border-purple-500/50 transition-all">
+          <div class="text-4xl mb-3">
+           🦊
+          </div>
+          <h3 class="font-bold mb-2">Firefox</h3>
+          <p class="text-gray-400 text-sm mb-3">เน้นความเป็นส่วนตัว</p><a href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 text-sm font-semibold">ดาวน์โหลด →</a>
+         </div>
+         <div class="card-gradient rounded-xl p-6 text-center border border-gray-700/50 hover:border-purple-500/50 transition-all">
+          <div class="text-4xl mb-3">
+           🧭
+          </div>
+          <h3 class="font-bold mb-2">Safari</h3>
+          <p class="text-gray-400 text-sm mb-3">สำหรับ macOS/iOS</p><a href="https://www.apple.com/safari/" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 text-sm font-semibold">เรียนรู้เพิ่ม →</a>
+         </div>
+         <div class="card-gradient rounded-xl p-6 text-center border border-gray-700/50 hover:border-purple-500/50 transition-all">
+          <div class="text-4xl mb-3">
+           🌊
+          </div>
+          <h3 class="font-bold mb-2">Microsoft Edge</h3>
+          <p class="text-gray-400 text-sm mb-3">ใช้ Chromium Engine</p><a href="https://www.microsoft.com/edge" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 text-sm font-semibold">ดาวน์โหลด →</a>
+         </div>
+        </div>
+       </div><!-- Extensions & Tools -->
+       <div class="mb-12">
+        <h2 class="text-3xl font-bold mb-8 text-center"><span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">Extensions และเครื่องมือเสริม</span></h2>
+        <div class="grid md:grid-cols-2 gap-6"><!-- VS Code Extensions -->
+         <div class="card-gradient rounded-2xl p-8 border border-gray-700/50">
+          <h3 class="text-xl font-bold mb-6 flex items-center gap-3"><span class="text-3xl">🔌</span> <span class="text-yellow-400">VS Code Extensions</span></h3>
+          <div class="space-y-4">
+           <div class="bg-gray-800/50 rounded-lg p-4">
+            <div class="flex justify-between items-start mb-2">
+             <h4 class="font-semibold">Live Server</h4><span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded">จำเป็น</span>
+            </div>
+            <p class="text-sm text-gray-400">รันเว็บแบบ Real-time ไม่ต้อง Refresh</p>
+           </div>
+           <div class="bg-gray-800/50 rounded-lg p-4">
+            <div class="flex justify-between items-start mb-2">
+             <h4 class="font-semibold">Prettier</h4><span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded">แนะนำ</span>
+            </div>
+            <p class="text-sm text-gray-400">จัดรูปแบบโค้ดให้สวยงามอัตโนมัติ</p>
+           </div>
+           <div class="bg-gray-800/50 rounded-lg p-4">
+            <div class="flex justify-between items-start mb-2">
+             <h4 class="font-semibold">Auto Close Tag</h4><span class="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded">มีประโยชน์</span>
+            </div>
+            <p class="text-sm text-gray-400">ปิด Tag HTML อัตโนมัติ</p>
+           </div>
+           <div class="bg-gray-800/50 rounded-lg p-4">
+            <div class="flex justify-between items-start mb-2">
+             <h4 class="font-semibold">CSS Peek</h4><span class="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded">มีประโยชน์</span>
+            </div>
+            <p class="text-sm text-gray-400">แสดงคำจำกัดความของ CSS Class</p>
+           </div>
+           <div class="bg-gray-800/50 rounded-lg p-4">
+            <div class="flex justify-between items-start mb-2">
+             <h4 class="font-semibold">Color Highlight</h4><span class="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded">มีประโยชน์</span>
+            </div>
+            <p class="text-sm text-gray-400">แสดงสีในโค้ด CSS</p>
+           </div>
+          </div>
+         </div><!-- Online Tools -->
+         <div class="card-gradient rounded-2xl p-8 border border-gray-700/50">
+          <h3 class="text-xl font-bold mb-6 flex items-center gap-3"><span class="text-3xl">🌐</span> <span class="text-yellow-400">เครื่องมือออนไลน์</span></h3>
+          <div class="space-y-4">
+           <div class="bg-gray-800/50 rounded-lg p-4">
+            <h4 class="font-semibold mb-2">CodePen</h4>
+            <p class="text-sm text-gray-400 mb-2">ทดสอบโค้ดออนไลน์แบบ Real-time</p><a href="https://codepen.io/" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 text-sm">เข้าใช้งาน →</a>
+           </div>
+           <div class="bg-gray-800/50 rounded-lg p-4">
+            <h4 class="font-semibold mb-2">Can I Use</h4>
+            <p class="text-sm text-gray-400 mb-2">ตรวจสอบความ Support ของ Browser</p><a href="https://caniuse.com/" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 text-sm">เข้าใช้งาน →</a>
+           </div>
+           <div class="bg-gray-800/50 rounded-lg p-4">
+            <h4 class="font-semibold mb-2">CSS Generator</h4>
+            <p class="text-sm text-gray-400 mb-2">สร้าง CSS Effects ต่างๆ</p><a href="https://cssgenerator.org/" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 text-sm">เข้าใช้งาน →</a>
+           </div>
+           <div class="bg-gray-800/50 rounded-lg p-4">
+            <h4 class="font-semibold mb-2">HTML Validator</h4>
+            <p class="text-sm text-gray-400 mb-2">ตรวจสอบความถูกต้องของ HTML</p><a href="https://validator.w3.org/" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 text-sm">เข้าใช้งาน →</a>
+           </div>
+           <div class="bg-gray-800/50 rounded-lg p-4">
+            <h4 class="font-semibold mb-2">Google Fonts</h4>
+            <p class="text-sm text-gray-400 mb-2">ฟอนต์ฟรีมากมาย</p><a href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 text-sm">เข้าใช้งาน →</a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div><!-- Learning Resources -->
+       <div>
+        <h2 class="text-3xl font-bold mb-8 text-center"><span class="bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent">แหล่งเรียนรู้เพิ่มเติม</span></h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+         <div class="card-gradient rounded-xl p-6 border border-gray-700/50 hover:border-green-500/50 transition-all">
+          <div class="text-4xl mb-4">
+           📚
+          </div>
+          <h3 class="font-bold mb-2">MDN Web Docs</h3>
+          <p class="text-gray-400 text-sm mb-3">เอกสารอ้างอิงสำหรับ Web Developers</p><a href="https://developer.mozilla.org/" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300 text-sm font-semibold">เข้าชม →</a>
+         </div>
+         <div class="card-gradient rounded-xl p-6 border border-gray-700/50 hover:border-green-500/50 transition-all">
+          <div class="text-4xl mb-4">
+           🎓
+          </div>
+          <h3 class="font-bold mb-2">W3Schools</h3>
+          <p class="text-gray-400 text-sm mb-3">บทเรียนและตัวอย่างโค้ด</p><a href="https://www.w3schools.com/" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300 text-sm font-semibold">เข้าชม →</a>
+         </div>
+         <div class="card-gradient rounded-xl p-6 border border-gray-700/50 hover:border-green-500/50 transition-all">
+          <div class="text-4xl mb-4">
+           🎮
+          </div>
+          <h3 class="font-bold mb-2">CSS Tricks</h3>
+          <p class="text-gray-400 text-sm mb-3">เทคนิคและ Tricks CSS</p><a href="https://css-tricks.com/" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300 text-sm font-semibold">เข้าชม →</a>
+         </div>
+         <div class="card-gradient rounded-xl p-6 border border-gray-700/50 hover:border-green-500/50 transition-all">
+          <div class="text-4xl mb-4">
+           📺
+          </div>
+          <h3 class="font-bold mb-2">YouTube Tutorials</h3>
+          <p class="text-gray-400 text-sm mb-3">วิดีโอสอนฟรีมากมาย</p><a href="https://www.youtube.com/results?search_query=html+css+tutorial" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300 text-sm font-semibold">ค้นหา →</a>
+         </div>
+         <div class="card-gradient rounded-xl p-6 border border-gray-700/50 hover:border-green-500/50 transition-all">
+          <div class="text-4xl mb-4">
+           💬
+          </div>
+          <h3 class="font-bold mb-2">Stack Overflow</h3>
+          <p class="text-gray-400 text-sm mb-3">ชุมชนถาม-ตอบปัญหา</p><a href="https://stackoverflow.com/" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300 text-sm font-semibold">เข้าชม →</a>
+         </div>
+         <div class="card-gradient rounded-xl p-6 border border-gray-700/50 hover:border-green-500/50 transition-all">
+          <div class="text-4xl mb-4">
+           🎨
+          </div>
+          <h3 class="font-bold mb-2">Tailwind CSS</h3>
+          <p class="text-gray-400 text-sm mb-3">Framework CSS ที่นิยม</p><a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300 text-sm font-semibold">เข้าชม →</a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </section>
+    </div><!-- Examples Page -->
+    <div id="examples-page" class="page hidden">
+     <section class="py-16 px-4">
+      <div class="max-w-5xl mx-auto">
+       <div class="text-center mb-12">
+        <div class="text-5xl mb-4">
+         💡
+        </div>
+        <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent">ตัวอย่างโค้ด</h1>
+        <p class="text-xl text-gray-300">เรียนรู้จากตัวอย่างจริง</p>
+       </div>
+       <div class="space-y-8"><!-- Example 1: Basic Structure -->
+        <div class="card-gradient rounded-2xl overflow-hidden border border-gray-700/50">
+         <div class="flex items-center justify-between p-4 bg-gray-800/50 border-b border-gray-700/50">
+          <div class="flex items-center gap-3"><span class="text-2xl">📄</span>
+           <h3 class="text-xl font-bold">1. โครงสร้าง HTML พื้นฐาน</h3>
+          </div><span class="difficulty-easy px-3 py-1 rounded-full text-sm font-semibold">ง่าย</span>
+         </div>
+         <div class="p-6">
+          <p class="text-gray-300 mb-4">โครงสร้างพื้นฐานที่ทุกไฟล์ HTML ต้องมี เป็นรากฐานของทุกเว็บเพจ</p>
+          <div class="code-block rounded-lg p-4 overflow-x-auto">
+           <pre class="text-sm text-gray-300"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="th"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;หัวข้อเว็บไซต์&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;สวัสดีชาวโลก!&lt;/h1&gt;
+    &lt;p&gt;นี่คือเว็บเพจแรกของฉัน&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          </div>
+         </div>
+        </div><!-- Example 2: Button Styling -->
+        <div class="card-gradient rounded-2xl overflow-hidden border border-gray-700/50">
+         <div class="flex items-center justify-between p-4 bg-gray-800/50 border-b border-gray-700/50">
+          <div class="flex items-center gap-3"><span class="text-2xl">🔘</span>
+           <h3 class="text-xl font-bold">2. ปุ่มสวยงามด้วย CSS</h3>
+          </div><span class="difficulty-easy px-3 py-1 rounded-full text-sm font-semibold">ง่าย</span>
+         </div>
+         <div class="p-6">
+          <p class="text-gray-300 mb-4">สร้างปุ่มที่มีเอฟเฟกต์ hover สวยงาม ใช้ได้กับทุกโปรเจค</p>
+          <div class="code-block rounded-lg p-4 overflow-x-auto mb-4">
+           <pre class="text-sm text-gray-300"><code>&lt;style&gt;
+.btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+}
+&lt;/style&gt;
+
+&lt;button class="btn"&gt;คลิกที่นี่&lt;/button&gt;</code></pre>
+          </div>
+          <div class="bg-gray-800/50 rounded-lg p-4">
+           <p class="text-sm text-gray-400 mb-2">ผลลัพธ์:</p><button style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 20px rgba(102, 126, 234, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">คลิกที่นี่</button>
+          </div>
+         </div>
+        </div><!-- Example 3: Card Component -->
+        <div class="card-gradient rounded-2xl overflow-hidden border border-gray-700/50">
+         <div class="flex items-center justify-between p-4 bg-gray-800/50 border-b border-gray-700/50">
+          <div class="flex items-center gap-3"><span class="text-2xl">🎴</span>
+           <h3 class="text-xl font-bold">3. Card Component</h3>
+          </div><span class="difficulty-medium px-3 py-1 rounded-full text-sm font-semibold">ปานกลาง</span>
+         </div>
+         <div class="p-6">
+          <p class="text-gray-300 mb-4">การ์ดแสดงข้อมูลพร้อมรูปภาพ ใช้บ่อยในเว็บสมัยใหม่</p>
+          <div class="code-block rounded-lg p-4 overflow-x-auto mb-4">
+           <pre class="text-sm text-gray-300"><code>&lt;style&gt;
+.card {
+    background: #1e1e30;
+    border-radius: 16px;
+    padding: 20px;
+    max-width: 300px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+.card:hover { transform: scale(1.02); }
+.card-icon { font-size: 48px; margin-bottom: 16px; }
+.card-title { font-size: 20px; font-weight: bold; color: #fff; }
+.card-text { color: #9ca3af; margin-top: 8px; }
+&lt;/style&gt;
+
+&lt;div class="card"&gt;
+    &lt;div class="card-icon"&gt;🚀&lt;/div&gt;
+    &lt;h3 class="card-title"&gt;เรียนรู้การโค้ด&lt;/h3&gt;
+    &lt;p class="card-text"&gt;เริ่มต้นสร้างเว็บไซต์ของคุณเอง&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div class="bg-gray-800/50 rounded-lg p-4 flex justify-center">
+           <div style="background: #1e1e30; border-radius: 16px; padding: 20px; max-width: 300px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';">
+            <div style="font-size: 48px; margin-bottom: 16px;">
+             🚀
+            </div>
+            <h3 style="font-size: 20px; font-weight: bold; color: #fff;">เรียนรู้การโค้ด</h3>
+            <p style="color: #9ca3af; margin-top: 8px;">เริ่มต้นสร้างเว็บไซต์ของคุณเอง</p>
+           </div>
+          </div>
+         </div>
+        </div><!-- Example 4: Flexbox Layout -->
+        <div class="card-gradient rounded-2xl overflow-hidden border border-gray-700/50">
+         <div class="flex items-center justify-between p-4 bg-gray-800/50 border-b border-gray-700/50">
+          <div class="flex items-center gap-3"><span class="text-2xl">📐</span>
+           <h3 class="text-xl font-bold">4. Flexbox Layout</h3>
+          </div><span class="difficulty-medium px-3 py-1 rounded-full text-sm font-semibold">ปานกลาง</span>
+         </div>
+         <div class="p-6">
+          <p class="text-gray-300 mb-4">จัดวางองค์ประกอบให้เรียงตามแนวนอนหรือแนวตั้งอย่างยืดหยุ่น</p>
+          <div class="code-block rounded-lg p-4 overflow-x-auto mb-4">
+           <pre class="text-sm text-gray-300"><code>&lt;style&gt;
+.flex-container {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.flex-item {
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+&lt;/style&gt;
+
+&lt;div class="flex-container"&gt;
+    &lt;div class="flex-item"&gt;Item 1&lt;/div&gt;
+    &lt;div class="flex-item"&gt;Item 2&lt;/div&gt;
+    &lt;div class="flex-item"&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div class="bg-gray-800/50 rounded-lg p-4">
+           <div style="display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap;">
+            <div style="background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; padding: 20px 30px; border-radius: 12px; font-weight: bold;">
+             Item 1
+            </div>
+            <div style="background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; padding: 20px 30px; border-radius: 12px; font-weight: bold;">
+             Item 2
+            </div>
+            <div style="background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; padding: 20px 30px; border-radius: 12px; font-weight: bold;">
+             Item 3
+            </div>
+           </div>
+          </div>
+         </div>
+        </div><!-- Example 5: Image Display -->
+        <div class="card-gradient rounded-2xl overflow-hidden border border-gray-700/50">
+         <div class="flex items-center justify-between p-4 bg-gray-800/50 border-b border-gray-700/50">
+          <div class="flex items-center gap-3"><span class="text-2xl">🖼️</span>
+           <h3 class="text-xl font-bold">5. การแสดงรูปภาพ</h3>
+          </div><span class="difficulty-easy px-3 py-1 rounded-full text-sm font-semibold">ง่าย</span>
+         </div>
+         <div class="p-6">
+          <p class="text-gray-300 mb-4">วิธีการใส่รูปภาพในเว็บไซต์พร้อมการตกแต่งด้วย CSS</p>
+          <div class="code-block rounded-lg p-4 overflow-x-auto mb-4">
+           <pre class="text-sm text-gray-300"><code>&lt;style&gt;
+.image-container {
+    max-width: 400px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+.styled-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s;
+}
+.styled-image:hover {
+    transform: scale(1.05);
+}
+&lt;/style&gt;
+
+&lt;div class="image-container"&gt;
+    &lt;img src="https://your-image-url.jpg" 
+         alt="คำอธิบายรูป" 
+         class="styled-image"
+         loading="lazy"&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div class="bg-gray-800/50 rounded-lg p-4">
+           <p class="text-sm text-gray-400 mb-3">ตัวอย่าง:</p>
+           <div style="max-width: 300px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.3);">
+            <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 48px; transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+             <img src="pic3.jpg" alt="">
+            </div>
+           </div>
+           <p class="text-xs text-gray-500 text-center mt-3">ใช้ URL รูปภาพจริงแทน src</p>
+          </div>
+         </div>
+        </div><!-- Example 6: Photo Album Grid -->
+        <div class="card-gradient rounded-2xl overflow-hidden border border-gray-700/50">
+         <div class="flex items-center justify-between p-4 bg-gray-800/50 border-b border-gray-700/50">
+          <div class="flex items-center gap-3"><span class="text-2xl">📸</span>
+           <h3 class="text-xl font-bold">6. อัลบั้มรูปภาพ (Grid Gallery)</h3>
+          </div><span class="difficulty-medium px-3 py-1 rounded-full text-sm font-semibold">ปานกลาง</span>
+         </div>
+         <div class="p-6">
+          <p class="text-gray-300 mb-4">สร้างอัลบั้มรูปแบบ Grid ที่สวยงามและ Responsive</p>
+          <div class="code-block rounded-lg p-4 overflow-x-auto mb-4">
+           <pre class="text-sm text-gray-300"><code>&lt;style&gt;
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 20px;
+}
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.gallery-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+}
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
+    padding: 30px 12px 12px;
+    transform: translateY(100%);
+    transition: transform 0.3s;
+}
+.gallery-item:hover .gallery-caption {
+    transform: translateY(0);
+}
+&lt;/style&gt;
+
+&lt;div class="gallery"&gt;
+    &lt;div class="gallery-item"&gt;
+        &lt;img src="image1.jpg" alt="รูป 1" 
+             class="gallery-image" loading="lazy"&gt;
+        &lt;div class="gallery-caption"&gt;ภาพที่ 1&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="gallery-item"&gt;
+        &lt;img src="image2.jpg" alt="รูป 2" 
+             class="gallery-image" loading="lazy"&gt;
+        &lt;div class="gallery-caption"&gt;ภาพที่ 2&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="gallery-item"&gt;
+        &lt;img src="image3.jpg" alt="รูป 3" 
+             class="gallery-image" loading="lazy"&gt;
+        &lt;div class="gallery-caption"&gt;ภาพที่ 3&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="gallery-item"&gt;
+        &lt;img src="image4.jpg" alt="รูป 4" 
+             class="gallery-image" loading="lazy"&gt;
+        &lt;div class="gallery-caption"&gt;ภาพที่ 4&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div class="bg-gray-800/50 rounded-lg p-4">
+           <p class="text-sm text-gray-400 mb-3">ตัวอย่าง:</p>
+           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px;">
+            <div style="position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 1/1; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.4)'; this.querySelector('.demo-caption').style.transform='translateY(0)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.querySelector('.demo-caption').style.transform='translateY(100%)';">
+             <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #f59e0b, #ef4444); display: flex; align-items: center; justify-content: center; color: white; font-size: 36px;">
+              <img src="pic1.jpg" alt="">
+             </div>
+             <div class="demo-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px 8px 8px; transform: translateY(100%); transition: transform 0.3s; font-size: 12px;">
+              ภาพที่ 1
+             </div>
+            </div>
+            <div style="position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 1/1; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.4)'; this.querySelector('.demo-caption').style.transform='translateY(0)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.querySelector('.demo-caption').style.transform='translateY(100%)';">
+             <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #10b981, #3b82f6); display: flex; align-items: center; justify-content: center; color: white; font-size: 36px;">
+              <img src="pic5.jpg" alt="">
+             </div>
+             <div class="demo-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px 8px 8px; transform: translateY(100%); transition: transform 0.3s; font-size: 12px;">
+              ภาพที่ 2
+             </div>
+            </div>
+            <div style="position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 1/1; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.4)'; this.querySelector('.demo-caption').style.transform='translateY(0)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.querySelector('.demo-caption').style.transform='translateY(100%)';">
+             <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #8b5cf6, #ec4899); display: flex; align-items: center; justify-content: center; color: white; font-size: 36px;">
+              <img src="pic2.jpg" alt="">
+             </div>
+             <div class="demo-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px 8px 8px; transform: translateY(100%); transition: transform 0.3s; font-size: 12px;">
+              ภาพที่ 3
+             </div>
+            </div>
+            <div style="position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 1/1; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.4)'; this.querySelector('.demo-caption').style.transform='translateY(0)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.querySelector('.demo-caption').style.transform='translateY(100%)';">
+             <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #f97316, #dc2626); display: flex; align-items: center; justify-content: center; color: white; font-size: 36px;">
+              <img src="pic4.jpg" alt="">
+             </div>
+             <div class="demo-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px 8px 8px; transform: translateY(100%); transition: transform 0.3s; font-size: 12px;">
+              ภาพที่ 4
+             </div>
+            </div>
+           </div>
+           <p class="text-xs text-gray-500 text-center mt-3">เลื่อนเมาส์ไปที่รูปเพื่อดูเอฟเฟกต์</p>
+          </div>
+         </div>
+        </div><!-- Example 7: CSS Animation -->
+        <div class="card-gradient rounded-2xl overflow-hidden border border-gray-700/50">
+         <div class="flex items-center justify-between p-4 bg-gray-800/50 border-b border-gray-700/50">
+          <div class="flex items-center gap-3"><span class="text-2xl">✨</span>
+           <h3 class="text-xl font-bold">7. CSS Animation</h3>
+          </div><span class="difficulty-hard px-3 py-1 rounded-full text-sm font-semibold">ยาก</span>
+         </div>
+         <div class="p-6">
+          <p class="text-gray-300 mb-4">สร้างอนิเมชั่นเคลื่อนไหวให้องค์ประกอบต่างๆ บนเว็บ</p>
+          <div class="code-block rounded-lg p-4 overflow-x-auto mb-4">
+           <pre class="text-sm text-gray-300"><code>&lt;style&gt;
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+.animated-box {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #10b981, #3b82f6);
+    border-radius: 16px;
+    animation: bounce 1s ease-in-out infinite;
+}
+&lt;/style&gt;
+
+&lt;div class="animated-box"&gt;&lt;/div&gt;</code></pre>
+          </div>
+          <div class="bg-gray-800/50 rounded-lg p-8 flex justify-center">
+           <style>
+                      @keyframes demo-bounce {
+                        0%, 100% { transform: translateY(0); }
+                        50% { transform: translateY(-20px); }
+                      }
+                    </style>
+           <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #10b981, #3b82f6); border-radius: 16px; animation: demo-bounce 1s ease-in-out infinite;"></div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </section>
+    </div><!-- Contact Page -->
+    <div id="contact-page" class="page hidden">
+     <section class="py-16 px-4">
+      <div class="max-w-3xl mx-auto"><!-- Profile Image -->
+       <div class="text-center mb-12">
+        <div class="flex items-center justify-center text-6xl glow-effect">
+         <img src="MS.png" alt="" width="30%">
+        </div>
+        <h1 class="text-4xl font-bold mb-2 bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent">ติดต่อเรา</h1>
+        <p class="text-gray-300 text-lg">ยินดีตอบทุกคำถามเกี่ยวกับการเรียนรู้ HTML &amp; CSS</p>
+       </div><!-- Contact Channels -->
+       <div class="grid sm:grid-cols-2 gap-6 mb-12">
+        <div class="card-gradient rounded-2xl p-6 border border-gray-700/50 hover:border-indigo-500/50 transition-all text-center">
+         <div class="text-4xl mb-4">
+          📧
+         </div>
+         <h3 class="font-semibold text-lg mb-2">Email</h3>
+         <p class="text-indigo-400">Fastback779@gmail.com</p>
+        </div>
+        <div class="card-gradient rounded-2xl p-6 border border-gray-700/50 hover:border-indigo-500/50 transition-all text-center">
+         <div class="text-4xl mb-4">
+          📱
+         </div>
+         <h3 class="font-semibold text-lg mb-2">โทรศัพท์</h3>
+         <p class="text-indigo-400">082-582-6861</p>
+        </div>
+        <div class="card-gradient rounded-2xl p-6 border border-gray-700/50 hover:border-indigo-500/50 transition-all text-center">
+         <div class="text-4xl mb-4">
+          💬
+         </div>
+         <h3 class="font-semibold text-lg mb-2">LINE</h3>
+         <p class="text-indigo-400">@fookfok4</p>
+        </div>
+        <div class="card-gradient rounded-2xl p-6 border border-gray-700/50 hover:border-indigo-500/50 transition-all text-center">
+         <div class="text-4xl mb-4">
+          🌐
+         </div>
+         <h3 class="font-semibold text-lg mb-2">Facebook</h3>
+         <a href="https://web.facebook.com/patiphan.manpri" target="_blank" class="text-indigo-400">Patiphan Manpri</a>
+        </div>
+       </div><!-- Contact Form -->
+       <div class="card-gradient rounded-2xl p-8 border border-gray-700/50">
+        <h2 class="text-2xl font-bold mb-6 text-center"><span class="bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent">ส่งข้อความถึงเรา</span></h2>
+        <form id="contact-form" class="space-y-6">
+         <div><label for="name" class="block text-sm font-medium mb-2 text-gray-300">ชื่อ-นามสกุล</label> <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all" placeholder="กรอกชื่อของคุณ" required>
+         </div>
+         <div><label for="email" class="block text-sm font-medium mb-2 text-gray-300">อีเมล</label> <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all" placeholder="example@email.com" required>
+         </div>
+         <div><label for="subject" class="block text-sm font-medium mb-2 text-gray-300">หัวข้อ</label> <select id="subject" name="subject" class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"> <option value="general">สอบถามทั่วไป</option> <option value="html">คำถามเกี่ยวกับ HTML</option> <option value="css">คำถามเกี่ยวกับ CSS</option> <option value="feedback">ข้อเสนอแนะ</option> <option value="other">อื่นๆ</option> </select>
+         </div>
+         <div><label for="message" class="block text-sm font-medium mb-2 text-gray-300">ข้อความ</label> <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none" placeholder="พิมพ์ข้อความของคุณที่นี่..." required></textarea>
+         </div><button type="submit" class="w-full py-4 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-indigo-500/30 transition-all transform hover:scale-[1.02]"> 📤 ส่งข้อความ </button>
+        </form>
+        <div id="form-success" class="hidden mt-6 p-4 bg-green-500/20 border border-green-500/50 rounded-xl text-center"><span class="text-2xl">✅</span>
+         <p class="text-green-400 mt-2">ส่งข้อความสำเร็จ! เราจะติดต่อกลับโดยเร็วที่สุด</p>
+        </div>
+       </div>
+      </div>
+     </section>
+    </div>
+   </div><!-- Footer -->
+   <footer class="bg-gray-900/50 border-t border-gray-700/50 py-8 px-4">
+    <div class="max-w-6xl mx-auto text-center">
+     <div class="flex justify-center gap-6 mb-4"><span class="text-2xl hover:scale-110 transition-transform cursor-pointer">📘</span> <span class="text-2xl hover:scale-110 transition-transform cursor-pointer">🐦</span> <span class="text-2xl hover:scale-110 transition-transform cursor-pointer">📸</span> <span class="text-2xl hover:scale-110 transition-transform cursor-pointer">💼</span>
+     </div>
+     <p class="text-gray-400">© 2026 HTML &amp; CSS Learning Hub. สร้างด้วย ❤️ สำหรับผู้เริ่มต้น</p>
+    </div>
+   </footer><!-- Chatbot Button --> <button id="chatbot-toggle" class="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-3xl shadow-lg hover:shadow-xl hover:shadow-pink-500/50 transition-all transform hover:scale-110 z-50 bounce-chat" onclick="toggleChatbot()"> 💬 </button> <!-- Chatbot Window -->
+   <div id="chatbot-window" class="fixed bottom-24 right-6 w-96 max-w-[calc(100vw-3rem)] bg-gray-900 border-2 border-purple-500/50 rounded-2xl shadow-2xl overflow-hidden z-50 hidden"><!-- Chatbot Header -->
+    <div class="bg-gradient-to-r from-pink-500 to-purple-600 p-4 flex items-center justify-between">
+     <div class="flex items-center gap-3">
+      <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-2xl">
+       <img src="LOGO.png" alt="">
+      </div>
+      <div>
+       <h3 class="font-bold text-white">HTML &amp; CSS Bot</h3>
+       <p class="text-xs text-white/80">ออนไลน์</p>
+      </div>
+     </div><button onclick="toggleChatbot()" class="text-white hover:text-gray-200 text-2xl"> ✕ </button>
+    </div><!-- Chat Messages -->
+    <div id="chat-messages" class="h-96 overflow-y-auto p-4 space-y-4 bg-gray-800/50"><!-- Welcome Message -->
+     <div class="flex gap-3">
+      <div class="w-8 h-8 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-lg flex-shrink-0">
+       <img src="LOGO.png" alt="">
+      </div>
+      <div class="chat-bubble bg-gray-700/80 rounded-2xl rounded-tl-none p-3">
+       <p class="text-sm text-gray-100">สวัสดีครับ! 👋 ผม HTML &amp; CSS Bot<br>
+        ยินดีช่วยตอบคำถามเกี่ยวกับ HTML และ CSS<br><br>
+        ลองถามผมได้เลยครับ เช่น:<br>
+        • "HTML คืออะไร?"<br>
+        • "CSS ใช้ทำอะไร?"<br>
+        • "เริ่มต้นเรียนอย่างไร?"</p>
+      </div>
+     </div>
+    </div><!-- Chat Input -->
+    <div class="border-t border-gray-700 p-4 bg-gray-900">
+     <form id="chat-form" class="flex gap-2"><input type="text" id="chat-input" placeholder="พิมพ์คำถามของคุณ..." class="flex-1 px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-sm" autocomplete="off"> <button type="submit" class="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/30 transition-all transform hover:scale-105"> ส่ง </button>
+     </form>
+    </div>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      site_title: 'HTML & CSS Hub',
+      hero_subtitle: 'เรียนรู้พื้นฐานการสร้างเว็บไซต์ตั้งแต่เริ่มต้น'
+    };
+
+    let config = { ...defaultConfig };
+
+    function showPage(pageName) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.add('hidden'));
+      
+      const targetPage = document.getElementById(pageName + '-page');
+      if (targetPage) {
+        targetPage.classList.remove('hidden');
+        targetPage.classList.remove('page-transition');
+        void targetPage.offsetWidth;
+        targetPage.classList.add('page-transition');
+      }
+
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('text-orange-400');
+        if (link.dataset.page === pageName) {
+          link.classList.add('text-orange-400');
+        }
+      });
+
+      document.getElementById('app').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('form-success').classList.remove('hidden');
+      this.reset();
+      setTimeout(() => {
+        document.getElementById('form-success').classList.add('hidden');
+      }, 5000);
+    });
+
+    async function onConfigChange(newConfig) {
+      config = { ...config, ...newConfig };
+      
+      const siteTitle = document.getElementById('site-title');
+      if (siteTitle) {
+        siteTitle.textContent = config.site_title || defaultConfig.site_title;
+      }
+      
+      const heroSubtitle = document.getElementById('hero-subtitle');
+      if (heroSubtitle) {
+        heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      }
+    }
+
+    function mapToCapabilities(cfg) {
+      return {
+        recolorables: [],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(cfg) {
+      return new Map([
+        ['site_title', cfg.site_title || defaultConfig.site_title],
+        ['hero_subtitle', cfg.hero_subtitle || defaultConfig.hero_subtitle]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    showPage('home');
+
+    // Chatbot functionality
+    const chatbotResponses = {
+      'html': {
+        keywords: ['html', 'เอชทีเอ็มแอล', 'hypertext'],
+        response: 'HTML (HyperText Markup Language) คือภาษามาร์กอัปที่ใช้สร้างโครงสร้างของเว็บไซต์ครับ 📄\n\nเปรียบเสมือน "โครงกระดูก" ของเว็บ ที่กำหนดว่าส่วนไหนคืออะไร เช่น หัวข้อ ย่อหน้า รูปภาพ ลิงก์\n\nHTML เรียนรู้ง่ายมาก เหมาะสำหรับผู้เริ่มต้น!'
+      },
+      'css': {
+        keywords: ['css', 'ซีเอสเอส', 'style', 'สไตล์'],
+        response: 'CSS (Cascading Style Sheets) คือภาษาที่ใช้ตกแต่งและจัดรูปแบบเว็บไซต์ครับ 🎨\n\nเปรียบเสมือน "เสื้อผ้า" ของเว็บ ที่กำหนดสี ขนาด ตำแหน่ง แบบอักษร และความสวยงามทั้งหมด\n\nCSS ทำให้เว็บสวยงามและน่าสนใจ!'
+      },
+      'เริ่มต้น': {
+        keywords: ['เริ่ม', 'เริ่มต้น', 'start', 'begin', 'ยังไง', 'อย่างไร'],
+        response: 'การเริ่มต้นเรียน HTML & CSS ง่ายมากครับ! 🚀\n\n1. ดาวน์โหลด Text Editor (แนะนำ VS Code)\n2. เรียนรู้ HTML พื้นฐานก่อน (1-2 สัปดาห์)\n3. ต่อด้วย CSS (2-4 สัปดาห์)\n4. ฝึกทำโปรเจคเล็กๆ\n5. เรียนรู้ Responsive Design\n\nคลิกไปที่หน้า Download เพื่อดาวน์โหลดเครื่องมือได้เลยครับ!'
+      },
+      'ยาก': {
+        keywords: ['ยาก', 'difficult', 'hard', 'ซับซ้อน'],
+        response: 'ไม่ยากเลยครับ! 😊\n\nHTML เรียนรู้ง่ายที่สุด (ระดับ 2/5)\nCSS ปานกลาง (ระดับ 3/5)\n\nเริ่มจากพื้นฐาน ฝึกบ่อยๆ แล้วค่อยๆ ไปต่อ ภายใน 1-2 เดือนคุณจะสร้างเว็บได้แล้ว!\n\nสิ่งสำคัญคือ อย่าเพิ่งท้อ และฝึกทำบ่อยๆ ครับ 💪'
+      },
+      'อาชีพ': {
+        keywords: ['อาชีพ', 'งาน', 'career', 'job', 'เงินเดือน', 'salary'],
+        response: 'HTML & CSS เปิดโอกาสอาชีพมากมายครับ! 💼\n\n• Front-end Developer\n• Web Designer\n• UI/UX Designer\n• Full-stack Developer\n• Digital Marketer\n\nเงินเดือนเริ่มต้น 15,000-25,000 บาท\nมีประสบการณ์ 30,000-60,000+ บาท\n\nเป็นทักษะพื้นฐานที่จำเป็นมากในยุคดิจิทัล!'
+      },
+      'ตัวอย่าง': {
+        keywords: ['ตัวอย่าง', 'example', 'code', 'โค้ด'],
+        response: 'มีตัวอย่างโค้ดให้ดูเยอะเลยครับ! 💡\n\nคลิกไปที่หน้า "ตัวอย่าง" ในเมนูด้านบน จะมี:\n• โครงสร้าง HTML พื้นฐาน\n• ปุ่มสวยงามด้วย CSS\n• Card Component\n• Flexbox Layout\n• CSS Animation\n\nแต่ละตัวอย่างมีโค้ดพร้อมคำอธิบายครับ!'
+      },
+      'download': {
+        keywords: ['download', 'ดาวน์โหลด', 'ดาวโหลด', 'โปรแกรม', 'program', 'editor'],
+        response: 'ไปที่หน้า Download ได้เลยครับ! 📥\n\nมีเครื่องมือแนะนำ:\n• VS Code (โปรแกรมเขียนโค้ด)\n• Chrome, Firefox (Browser)\n• Extensions ที่จำเป็น\n• เครื่องมือออนไลน์\n\nทั้งหมดฟรี และใช้งานง่ายครับ!'
+      },
+      'ขอบคุณ': {
+        keywords: ['ขอบคุณ', 'thank', 'thanks', 'ขอบใจ'],
+        response: 'ยินดีครับ! 😊 มีคำถามอะไรถามได้เสมอนะครับ\n\nสู้ๆ กับการเรียนรู้ HTML & CSS! 💪✨'
+      },
+      'สวัสดี': {
+        keywords: ['สวัสดี', 'hello', 'hi', 'hey', 'หวัดดี'],
+        response: 'สวัสดีครับ! 👋\n\nผมคือ HTML & CSS Bot พร้อมช่วยตอบคำถามเกี่ยวกับการเรียนรู้ HTML และ CSS\n\nมีอะไรให้ช่วยไหมครับ? 😊'
+      }
+    };
+
+    function toggleChatbot() {
+      const chatWindow = document.getElementById('chatbot-window');
+      const chatToggle = document.getElementById('chatbot-toggle');
+      
+      if (chatWindow.classList.contains('hidden')) {
+        chatWindow.classList.remove('hidden');
+        chatToggle.classList.add('scale-0');
+      } else {
+        chatWindow.classList.add('hidden');
+        chatToggle.classList.remove('scale-0');
+      }
+    }
+
+    function addMessage(message, isUser = false) {
+      const chatMessages = document.getElementById('chat-messages');
+      const messageDiv = document.createElement('div');
+      
+      if (isUser) {
+        messageDiv.className = 'flex gap-3 justify-end';
+        messageDiv.innerHTML = `
+          <div class="chat-bubble bg-gradient-to-r from-pink-500 to-purple-600 rounded-2xl rounded-tr-none p-3">
+            <p class="text-sm text-white">${message}</p>
+          </div>
+          <div class="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-lg flex-shrink-0">
+            👤
+          </div>
+        `;
+      } else {
+        messageDiv.className = 'flex gap-3';
+        messageDiv.innerHTML = `
+          <div class="w-8 h-8 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-lg flex-shrink-0">
+            🤖
+          </div>
+          <div class="chat-bubble bg-gray-700/80 rounded-2xl rounded-tl-none p-3">
+            <p class="text-sm text-gray-100" style="white-space: pre-line;">${message}</p>
+          </div>
+        `;
+      }
+      
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function getBotResponse(userMessage) {
+      const lowerMessage = userMessage.toLowerCase();
+      
+      for (const [key, data] of Object.entries(chatbotResponses)) {
+        for (const keyword of data.keywords) {
+          if (lowerMessage.includes(keyword.toLowerCase())) {
+            return data.response;
+          }
+        }
+      }
+      
+      return 'ขอโทษครับ ผมยังไม่เข้าใจคำถามนี้ดีนัก 🤔\n\nลองถามเกี่ยวกับ:\n• HTML คืออะไร?\n• CSS ใช้ทำอะไร?\n• เริ่มต้นเรียนอย่างไร?\n• มีอาชีพอะไรบ้าง?\n• มีตัวอย่างโค้ดไหม?\n\nหรือติดต่อผ่านหน้า Contact ได้เลยครับ!';
+    }
+
+    document.getElementById('chat-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const input = document.getElementById('chat-input');
+      const userMessage = input.value.trim();
+      
+      if (userMessage === '') return;
+      
+      addMessage(userMessage, true);
+      input.value = '';
+      
+      setTimeout(() => {
+        const botResponse = getBotResponse(userMessage);
+        addMessage(botResponse, false);
+      }, 500);
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c3f08ea052b0886',t:'MTc2OTQyMDI3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
